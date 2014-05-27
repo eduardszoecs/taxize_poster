@@ -1,0 +1,207 @@
+\documentclass[final,t]{beamer}
+\mode<presentation>
+{
+ \usetheme{mytheme}
+}
+
+\usepackage[
+  orientation=portrait,
+  size=a0, 
+  scale = 1.2, 
+  %debug
+  ]{beamerposter}  % A0, hochkant
+
+
+%% additional settings
+\setbeamerfont{itemize}{size=\normalsize}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamertemplate{items}[triangle] % ball: 3-dimensional balls ;circle: 2-dimensional (flat) circles ;rectangle: rectangles ;default: triangles 
+
+%% additional packages
+\usepackage{times}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage{exscale}
+\usepackage{booktabs, array}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=1]{helvet}    %% --- Helvetica (Arial)
+\usepackage{ragged2e}   % für Blocksatz  \justifying setzen
+\usepackage{array}  % center alligned columns
+\usepackage{marvosym} %compter / mouse symbols
+
+
+\usepackage[
+  %round,	%(default) for round parentheses;
+	square,	% for square brackets;
+	%curly,	% for curly braces;
+	%angle,	% for angle brackets;
+	colon,	% (default) to separate multiple citations with colons;
+	%comma,	% to use commas as separaters;
+	%authoryear,% (default) for author-year citations;
+	numbers,	% for numerical citations;
+	%super,	% for superscripted numerical citations, as in Nature;
+	%sort,		% orders multiple citations into the sequence in which they appear in the list of 				references;
+	%sort&compress,    % as sort but in addition multiple numerical citations
+                   % are compressed if possible (as 3-6, 15);
+	%longnamesfirst,  % makes the first citation of any reference the equivalent of
+                   % the starred variant (full author list) and subsequent citations
+                   %normal (abbreviated list);
+	%sectionbib,      % redefines \thebibliography to issue \section* instead of \chapter*;
+                   % valid only for classes with a \chapter command;
+                   % to be used with the chapterbib package;
+	%nonamebreak,     % keeps all the authors names in a citation on one line;
+                   %causes overfull hboxes but helps with some hyperref problems.
+]{natbib}											    			% Literaturverzeichnis
+%\bibpunct{(}{)}{;}{a}{,}{}
+%\linespread{1.3}
+
+
+\renewcommand*{\tiny}{\fontsize{\resulttinyX}{\resulttinyY}\selectfont}
+
+\title{taxize: \\[0.2em] taxonomic search and retrieval in R}
+\author{Eduard Szöcs\textsuperscript{1} and Scott A. Chamberlain\textsuperscript{2}}
+\institute{\textsuperscript{1}University of Koblenz-Landau, \textsuperscript{2}Simon Fraser University}
+
+
+
+
+%%% Footline
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
+    Eduard Szöcs, Mail: \url{szoecs@uni-landau.de}
+    \vskip1ex
+  \end{beamercolorbox}}
+
+  
+
+
+%%% global settings
+\setbeamertemplate{caption}[numbered] %%% Captions nummeriert
+\setbeamerfont{caption}{size=\footnotesize} %%% Captions kleiner
+\def\newblock{\hskip .11em plus.33em minus.07em} %%% \newblock undefined Fehler beheben
+\setbeamertemplate{itemize item}{$\bullet$}  %%% itemize symbol
+\let\raggedright\relax   %% justifying also in itemize
+
+%%% hyperref fix textsuperscript in section
+\pdfstringdefDisableCommands{%
+  \def\textsuperscript#1{\textasciicircum(#1)}%
+}
+
+
+  \renewenvironment{knitrout}{\begin{footnotesize}}{\end{footnotesize}}
+
+
+\begin{document}
+<<echo=FALSE, message=FALSE>>=
+require(taxize)
+options(width = 50)
+opts_chunk$set(fig.align='center',fig.show='hold',size='footnotesize', cache=TRUE)
+@
+
+  \begin{frame}[fragile]
+
+		\begin{block}{Summary}
+    \large \textcolor{i6bluedark}{\textbf{Taxize}} is a R package that provides an interface to various taxonomic data sources around the web.
+    We hope that taxize will be
+		\end{block}
+
+	\begin{columns}[t]
+		\begin{column}{0.01\linewidth}
+		\end{column}
+
+		\begin{column}{.49\linewidth}
+			\vspace{-\baselineskip}  % kills unnecessary vspace
+			\begin{block}{Data Sources}
+				\begin{figure}
+					\includegraphics[width=0.8\linewidth]{fig/sources.png}
+					\label{fig:sources}
+				\end{figure}
+        Taxize currently provides simple and programmatic access to taxonomic data from 14 data sources around the web.
+			\end{block}
+
+			\begin{block}{Features}
+				\textcolor{i6bluedark}{\textbf{\large Resolve taxonomic names}}
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          We often have a list of species names and we want to know \\
+          a) if we have the most up-to-date names, \\
+          b) if our names are spelled correctly,  \\
+          c) and the scientific name for a common name.\\
+          Taxize provides an interface to the EOL Global Names Resolver and Taxonomic Name Resolution Service, e.g.
+        \par
+        \endgroup
+
+<<eval=FALSE>>=
+gnr_resolve('Baetis roodani')
+@
+<<echo=FALSE>>=
+gnr_resolve('Baetis roodani')$results[1, 1:2]
+@
+
+					
+\textcolor{i6bluedark}{\textbf{Retrieve higher taxonomic names}} 
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          Another common 
+        \par
+        \endgroup
+
+<<eval=FALSE>>=
+classification('Baetis rhodani', db='col')
+@
+<<echo=FALSE,message=FALSE>>=
+classification('Baetis rhodani', db = 'col')[[1]]
+@
+
+
+					
+Retrieve children taxa
+<<eval=FALSE>>=
+downstream('Baetis', db = 'col', downto = 'Species')
+@
+<<echo=FALSE,message=FALSE>>=
+downstream('Baetis', db = 'col', downto = 'Species')[[1]][1:5, 2:3]
+@
+					
+Aggregate data to a specific taxonomic rank
+
+
+			\end{block}
+		\end{column}
+    
+		\begin{column}{0.005\linewidth}
+		\end{column}
+
+
+		\begin{column}{.49\linewidth}
+			\vspace{-\baselineskip}
+      
+      \begin{block}{test}
+<<>>=
+1+1
+@
+
+      \end{block}
+      
+			\begin{block}{Contribution}
+				\begin{columns}[T]
+					\begin{column}{.78\linewidth}
+						taxize is currently developed collaboratively in github. Feature requests, bug reports and contributions are strongly encouraged! \\[0.5em]
+						\huge \Mundus \normalsize \hspace{0.5cm} https://github.com/ropensci/taxize
+					\end{column}
+					\begin{column}{.2\linewidth}
+						\includegraphics[width=0.85\linewidth]{fig/github.png}
+					\end{column}
+				\end{columns}
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+\end{document}
