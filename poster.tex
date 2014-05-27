@@ -145,7 +145,9 @@
 
 		\begin{block}{\Large Summary}
     \Large \textcolor{i6bluedark}{\textbf{Taxize}} is a R package that provides an interface to various taxonomic data sources around the web.
-    The functionality of taxize facilitates the data cleaning step before a statistical analysis and eases handling of taxonomic data in R.
+    Data cleaning steps, like fixing taxonomic names, aggregating data to a specific taxonomic level or matching tables with different taxonomic resolution are crucial steps before a statistical analysis. 
+    The functionality of taxize simplifies these steps and eases handling of taxonomic data in R. 
+    
 		\end{block}
 
 	\begin{columns}[t]
@@ -156,6 +158,7 @@
 			\vspace{-\baselineskip}  % kills unnecessary vspace
 			\begin{block}{Data Sources}
         Taxize currently provides simple and programmatic access to taxonomic data from 14 data sources around the web.
+        \vspace{0.5cm}
 				\begin{figure}
 					\includegraphics[width=0.8\linewidth]{fig/sources.png}
 					\label{fig:sources}
@@ -200,7 +203,7 @@
         \begingroup
         \leftskip=2cm
         \noindent 
-          One can also search in the opposite direction, i.e. search species within a genus:
+          Another common task is to retrieve the complete taxonomic hierarchy for a taxon:
         \par
         \endgroup
 
@@ -228,7 +231,48 @@
 \end{knitrout}
 \vspace{2em}
 
+\textcolor{i6bluedark}{\textbf{\large Retrieve children taxa}}
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          One can also search in the opposite direction, i.e. search species within a genus:
+        \par
+        \endgroup
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{downstream}\hlstd{(}\hlstr{'Baetis'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'col'}\hlstd{,} \hlkwc{downto} \hlstd{=} \hlstr{'Species'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##      childtaxa_name childtaxa_rank
+## 1   Baetis acceptus        Species
+## 2  Baetis aculeatus        Species
+## 3 Baetis acuminatus        Species
+## 4     Baetis adonis        Species
+## 5     Baetis aeneus        Species
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\vspace{2em}
 
+			\end{block}
+		\end{column}
+    
+		\begin{column}{0.005\linewidth}
+		\end{column}
+
+
+
+		\begin{column}{.49\linewidth}
+			\vspace{-\baselineskip}
+      
+      \begin{block}{Features (cont.)}
 \textcolor{i6bluedark}{\textbf{\large Building taxonomic trees}} 
         \vspace{0.5em}
         \par
@@ -267,48 +311,6 @@
 
 
 
-\end{knitrout}
-\vspace{2em}
-
-			\end{block}
-		\end{column}
-    
-		\begin{column}{0.005\linewidth}
-		\end{column}
-
-
-
-		\begin{column}{.49\linewidth}
-			\vspace{-\baselineskip}
-      
-      \begin{block}{Features (cont.)}
-\textcolor{i6bluedark}{\textbf{\large Retrieve children taxa}}
-        \vspace{0.5em}
-        \par
-        \begingroup
-        \leftskip=2cm
-        \noindent 
-          Another common task is to retrieve the complete taxonomic hierarchy for a taxon:
-        \par
-        \endgroup
-\begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{downstream}\hlstd{(}\hlstr{'Baetis'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'col'}\hlstd{,} \hlkwc{downto} \hlstd{=} \hlstr{'Species'}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-\begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-##      childtaxa_name childtaxa_rank
-## 1   Baetis acceptus        Species
-## 2  Baetis aculeatus        Species
-## 3 Baetis acuminatus        Species
-## 4     Baetis adonis        Species
-## 5     Baetis aeneus        Species
-\end{verbatim}
-\end{kframe}
 \end{knitrout}
 \vspace{2em}
 
@@ -354,6 +356,18 @@
       \end{block}
       
       \begin{block}{Under the hood}
+      taxize grabs data from the internet, formats and returns it to the user.
+      This would not have been possible without the work of others:
+      \begin{description}
+        \item[Calling Servers] \hfill \\
+          \texttt{httr} and \texttt{RCurl}
+        \item[Parsing] \hfill \\
+          \texttt{XML} and \texttt{RJSONIO}
+        \item[Data manipulation] \hfill \\
+          \texttt{stringr}, \texttt{plyr}, \texttt{reshape2} and \texttt{vegan}
+      \end{description}
+      \vspace{0.5cm}
+      And, of course, base-R ;)
       
       \end{block}
       
