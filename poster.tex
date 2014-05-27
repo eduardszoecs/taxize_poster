@@ -56,7 +56,7 @@
 \usepackage[
   orientation=portrait,
   size=a0, 
-  scale = 1.2, 
+  scale = 1.3, 
   %debug
   ]{beamerposter}  % A0, hochkant
 
@@ -78,8 +78,6 @@
 \usepackage{ragged2e}   % für Blocksatz  \justifying setzen
 \usepackage{array}  % center alligned columns
 \usepackage{marvosym} %compter / mouse symbols
-
-
 \usepackage[
   %round,	%(default) for round parentheses;
 	square,	% for square brackets;
@@ -138,16 +136,16 @@
 }
 
 
-  \renewenvironment{knitrout}{\begin{footnotesize}}{\end{footnotesize}}
+\renewenvironment{knitrout}{}{\vspace{-1.8em}}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 
   \begin{frame}[fragile]
 
-		\begin{block}{Summary}
-    \large \textcolor{i6bluedark}{\textbf{Taxize}} is a R package that provides an interface to various taxonomic data sources around the web.
-    We hope that taxize will be
+		\begin{block}{\Large Summary}
+    \Large \textcolor{i6bluedark}{\textbf{Taxize}} is a R package that provides an interface to various taxonomic data sources around the web.
+    The functionality of taxize facilitates the data cleaning step before a statistical analysis and eases handling of taxonomic data in R.
 		\end{block}
 
 	\begin{columns}[t]
@@ -157,11 +155,11 @@
 		\begin{column}{.49\linewidth}
 			\vspace{-\baselineskip}  % kills unnecessary vspace
 			\begin{block}{Data Sources}
+        Taxize currently provides simple and programmatic access to taxonomic data from 14 data sources around the web.
 				\begin{figure}
 					\includegraphics[width=0.8\linewidth]{fig/sources.png}
 					\label{fig:sources}
 				\end{figure}
-        Taxize currently provides simple and programmatic access to taxonomic data from 14 data sources around the web.
 			\end{block}
 
 			\begin{block}{Features}
@@ -180,41 +178,41 @@
         \endgroup
 
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{gnr_resolve}\hlstd{(}\hlstr{'Baetis roodani'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ##   submitted_name   matched_name
 ## 1 Baetis roodani Baetis rhodani
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
+\vspace{2em}
 					
-\textcolor{i6bluedark}{\textbf{Retrieve higher taxonomic names}} 
+\textcolor{i6bluedark}{\textbf{\large Retrieve higher taxonomic names}} 
         \vspace{0.5em}
         \par
         \begingroup
         \leftskip=2cm
         \noindent 
-          Another common 
+          One can also search in the opposite direction, i.e. search species within a genus:
         \par
         \endgroup
 
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{classification}\hlstd{(}\hlstr{'Baetis rhodani'}\hlstd{,} \hlkwc{db}\hlstd{=}\hlstr{'col'}\hlstd{)}
+\hlkwd{classification}\hlstd{(}\hlstr{'Baetis rhodani'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'col'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ##             name        rank
 ## 1       Animalia     Kingdom
@@ -228,19 +226,80 @@
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
+\vspace{2em}
 
 
-					
-Retrieve children taxa
+\textcolor{i6bluedark}{\textbf{\large Building taxonomic trees}} 
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          Using this taxonomic information we can build taxonomic trees. 
+          The can be used a surrogates when phylogenetic data is scarce.
+        \par
+        \endgroup
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{species} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"Juncus bufonius"}\hlstd{,} \hlstr{"Juncus articulatus"}\hlstd{,}
+    \hlstr{"Aira praecox"}\hlstd{,} \hlstr{"Rumex acetosa"}\hlstd{,} \hlstr{"Baetis rhodani"}\hlstd{)}
+\hlstd{hier} \hlkwb{<-} \hlkwd{classification}\hlstd{(species,} \hlkwc{db} \hlstd{=} \hlstr{'ncbi'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{plot}\hlstd{(}\hlkwd{class2tree}\hlstd{(hier))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\vspace{2em}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}
+
+{\centering \includegraphics[width=0.4\linewidth]{figure/classtree} 
+
+}
+
+
+
+\end{knitrout}
+\vspace{2em}
+
+			\end{block}
+		\end{column}
+    
+		\begin{column}{0.005\linewidth}
+		\end{column}
+
+
+
+		\begin{column}{.49\linewidth}
+			\vspace{-\baselineskip}
+      
+      \begin{block}{Features (cont.)}
+\textcolor{i6bluedark}{\textbf{\large Retrieve children taxa}}
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          Another common task is to retrieve the complete taxonomic hierarchy for a taxon:
+        \par
+        \endgroup
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{downstream}\hlstd{(}\hlstr{'Baetis'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'col'}\hlstd{,} \hlkwc{downto} \hlstd{=} \hlstr{'Species'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 ##      childtaxa_name childtaxa_rank
 ## 1   Baetis acceptus        Species
@@ -251,35 +310,54 @@ Retrieve children taxa
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-					
-Aggregate data to a specific taxonomic rank
+\vspace{2em}
 
+\textcolor{i6bluedark}{\textbf{\large Aggregate data to a specific taxonomic rank}}
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          Using the taxonomic information taxa can be easily aggregated to different levels, e.g. to study effects on different taxonomic levels.
+          This is provided via the \texttt{tax\_agg()} function:
+        \par
+        \endgroup
 
-			\end{block}
-		\end{column}
-    
-		\begin{column}{0.005\linewidth}
-		\end{column}
-
-
-		\begin{column}{.49\linewidth}
-			\vspace{-\baselineskip}
-      
-      \begin{block}{test}
 \begin{knitrout}\footnotesize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlnum{1}\hlopt{+}\hlnum{1}
+\hlkwd{tax_agg}\hlstd{(dune,} \hlkwc{rank} \hlstd{=} \hlstr{'family'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'ncbi'}\hlstd{)}
 \end{alltt}
-\begin{verbatim}
-## [1] 2
-\end{verbatim}
 \end{kframe}
 \end{knitrout}
+\vspace{2em}
 
+\textcolor{i6bluedark}{\textbf{\large Match tables with different taxonomic resolution}}
+        \vspace{0.5em}
+        \par
+        \begingroup
+        \leftskip=2cm
+        \noindent 
+          Using the taxonomic information taxa can be easily aggregated to different levels, e.g. to study effects on different taxonomic levels.
+          This is provided via the \texttt{tax\_agg()} function:
+        \par
+        \endgroup
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.933, 0.933, 0.933}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{tax_agg}\hlstd{(dune,} \hlkwc{rank} \hlstd{=} \hlstr{'family'}\hlstd{,} \hlkwc{db} \hlstd{=} \hlstr{'ncbi'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\vspace{2em}
       \end{block}
       
-			\begin{block}{Contribution}
+      \begin{block}{Under the hood}
+      
+      \end{block}
+      
+			\begin{block}{Get involved!}
 				\begin{columns}[T]
 					\begin{column}{.78\linewidth}
 						taxize is currently developed collaboratively in github. Feature requests, bug reports and contributions are strongly encouraged! \\[0.5em]
