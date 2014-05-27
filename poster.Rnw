@@ -29,8 +29,6 @@
 \usepackage{ragged2e}   % für Blocksatz  \justifying setzen
 \usepackage{array}  % center alligned columns
 \usepackage{marvosym} %compter / mouse symbols
-
-
 \usepackage[
   %round,	%(default) for round parentheses;
 	square,	% for square brackets;
