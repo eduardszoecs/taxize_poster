@@ -113,7 +113,7 @@ opts_chunk$set(fig.align='center',fig.show='hold',size='footnotesize', cache=TRU
 		\begin{column}{.49\linewidth}
 			\vspace{-\baselineskip}  % kills unnecessary vspace
 			\begin{block}{Data Sources}
-        Taxize currently provides simple and programmatic access to taxonomic data from 14 data sources around the web.
+        Taxize currently provides simple and programmatic access to taxonomic data from 15 data sources around the web.
         \vspace{0.5cm}
 				\begin{figure}
 					\includegraphics[width=0.8\linewidth]{fig/sources.png}
