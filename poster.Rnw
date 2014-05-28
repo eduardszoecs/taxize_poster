@@ -30,7 +30,7 @@
 \usepackage{array}  % center alligned columns
 \usepackage{marvosym} %compter / mouse symbols
 \usepackage[
-  %round,	%(default) for round parentheses;
+  %round,  %(default) for round parentheses;
 	square,	% for square brackets;
 	%curly,	% for curly braces;
 	%angle,	% for angle brackets;
@@ -59,7 +59,7 @@
 
 \title{taxize: \\[0.2em] taxonomic search and retrieval in R}
 \author{Eduard Szöcs\textsuperscript{1} and Scott A. Chamberlain\textsuperscript{2}}
-\institute{\textsuperscript{1}University of Koblenz-Landau, \textsuperscript{2}Simon Fraser University}
+\institute{\textsuperscript{1}University of Koblenz-Landau, \textsuperscript{2}rOpenSci}
 
 
 
@@ -269,7 +269,7 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
 			\begin{block}{Get involved!}
 				\begin{columns}[T]
 					\begin{column}{.78\linewidth}
-						taxize is currently developed collaboratively in github. Feature requests, bug reports and contributions are strongly encouraged! \\[0.5em]
+						taxize is currently developed collaboratively on GitHub. Feature requests, bug reports and contributions are strongly encouraged! \\[0.5em]
 						\huge \Mundus \normalsize \hspace{0.5cm} https://github.com/ropensci/taxize
 					\end{column}
 					\begin{column}{.2\linewidth}
