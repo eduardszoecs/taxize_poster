@@ -111,8 +111,8 @@
 \renewcommand*{\tiny}{\fontsize{\resulttinyX}{\resulttinyY}\selectfont}
 
 \title{taxize: \\[0.2em] taxonomic search and retrieval in R}
-\author{Eduard Szöcs\textsuperscript{1} and Scott A. Chamberlain\textsuperscript{2}}
-\institute{\textsuperscript{1}University of Koblenz-Landau, \textsuperscript{2}rOpenSci}
+\author{Eduard Szöcs \textsuperscript{1} and Scott A. Chamberlain \textsuperscript{2}}
+\institute{\textsuperscript{1} University of Koblenz-Landau, \textsuperscript{2} rOpenSci}
 
 
 
@@ -149,22 +149,22 @@
 
 		\begin{block}{\Large Summary}
     \Large \textcolor{i6bluedark}{\textbf{Taxize}} is a R package that provides an interface to various taxonomic data sources around the web \cite{chamberlain_taxize:_2013}.
-    Data cleaning steps, like fixing taxonomic names, aggregating data to a specific taxonomic level or matching tables with different taxonomic resolution are crucial steps before a statistical analysis \cite{boyle_taxonomic_2013}. 
+    Data cleaning steps, like fixing taxonomic names, aggregating data to a specific taxonomic level, resolving ambiguous taxa or matching tables with different taxonomic resolution are crucial steps before a statistical analysis \cite{boyle_taxonomic_2013}. 
     The functionality of taxize simplifies these steps and eases handling of taxonomic data in R. 
-    
 		\end{block}
+    \vspace{.5em}
 
 	\begin{columns}[t]
 		\begin{column}{0.01\linewidth}
 		\end{column}
 
-		\begin{column}{.49\linewidth}
+		\begin{column}{.485\linewidth}
 			\vspace{-\baselineskip}  % kills unnecessary vspace
 			\begin{block}{Data Sources}
         Taxize currently provides simple and programmatic access to taxonomic data from 15 data sources around the web.
         \vspace{0.5cm}
 				\begin{figure}
-					\includegraphics[width=0.8\linewidth]{fig/sources.png}
+					\includegraphics[width=0.9\linewidth]{fig/sources.png}
 					\label{fig:sources}
 				\end{figure}
 			\end{block}
@@ -176,10 +176,10 @@
         \begingroup
         \leftskip=2cm
         \noindent 
-          We often have a list of species names and we want to know \\
+          We often have a list of species names and we want to know \\[0.5em]
           a) if we have the most up-to-date names, \\
           b) if our names are spelled correctly,  \\
-          c) and the scientific name for a common name.\\
+          c) and the scientific name for a common name.\\[0.5em]
           Taxize provides an interface to the EOL Global Names Resolver and Taxonomic Name Resolution Service, e.g.
         \par
         \endgroup
@@ -261,6 +261,8 @@
 ## 3 Baetis acuminatus        Species
 ## 4     Baetis adonis        Species
 ## 5     Baetis aeneus        Species
+## 6      Baetis alius        Species
+## 7    Baetis alpinus        Species
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -269,23 +271,23 @@
 			\end{block}
 		\end{column}
     
-		\begin{column}{0.005\linewidth}
+		\begin{column}{0.01\linewidth}
 		\end{column}
 
 
 
-		\begin{column}{.49\linewidth}
+		\begin{column}{.485\linewidth}
 			\vspace{-\baselineskip}
       
       \begin{block}{Features (cont.)}
-\textcolor{i6bluedark}{\textbf{\large Building taxonomic trees}} 
+\textcolor{i6bluedark}{\textbf{\large Hierarchy trees}} 
         \vspace{0.5em}
         \par
         \begingroup
         \leftskip=2cm
         \noindent 
-          Using this taxonomic information we can build taxonomic trees. 
-          The can be used a surrogates when phylogenetic data is scarce \cite{guenard_using_2011}.
+          The taxonomic relationships between species can be displayed in hierarchy trees. 
+          These could be used for example as surrogates when phylogenetic data is scarce \cite{guenard_using_2011}.
         \par
         \endgroup
 \begin{knitrout}\footnotesize
@@ -319,14 +321,14 @@
 \end{knitrout}
 \vspace{2em}
 
-\textcolor{i6bluedark}{\textbf{\large Aggregate data to a specific taxonomic rank}}
+\textcolor{i6bluedark}{\textbf{\large Aggregate taxa}}
         \vspace{0.5em}
         \par
         \begingroup
         \leftskip=2cm
         \noindent 
           Using the taxonomic information taxa can be easily aggregated to different levels, e.g. to study effects on different taxonomic levels.
-          This is provided via the \texttt{tax\_agg()} function:
+          Taxize provides the \texttt{tax\_agg()} function for this purpose:
         \par
         \endgroup
 
@@ -339,13 +341,14 @@
 \end{knitrout}
 \vspace{2em}
 
-\textcolor{i6bluedark}{\textbf{\large Match tables with different taxonomic resolution}}
+
+\textcolor{i6bluedark}{\textbf{\large Other use cases}}
         \vspace{0.5em}
         \par
         \begingroup
         \leftskip=2cm
         \noindent 
-          lalalala
+          restax, IUCN, Invasive, ...
         \par
         \endgroup
 
@@ -377,12 +380,12 @@
       
 			\begin{block}{Get involved!}
 				\begin{columns}[T]
-					\begin{column}{.78\linewidth}
+					\begin{column}{.85\linewidth}
 						taxize is currently developed collaboratively on GitHub. Feature requests, bug reports and contributions are strongly encouraged! \\[0.5em]
-						\huge \Mundus \normalsize \hspace{0.5cm} https://github.com/ropensci/taxize
+						\huge \Mundus \normalsize \hspace{0.5cm} \textbf{https://github.com/ropensci/taxize}
 					\end{column}
-					\begin{column}{.2\linewidth}
-						\includegraphics[width=0.85\linewidth]{fig/github.png}
+					\begin{column}{.13\linewidth}
+						\includegraphics[width=0.9\linewidth]{fig/github.png}
 					\end{column}
 				\end{columns}
 			\end{block}
