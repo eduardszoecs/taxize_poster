@@ -229,6 +229,7 @@ plot(class2tree(hier), no.margin=TRUE, edge.width=3, label.offset = 1)
         \leftskip=2cm
         \noindent 
           Using the taxonomic information taxa can be easily aggregated to different levels, e.g. to study effects on different taxonomic levels.
+          
           Taxize provides the \texttt{tax\_agg()} function for this purpose:
         \par
         \endgroup
@@ -240,19 +241,19 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
 
 
 \textcolor{i6bluedark}{\textbf{\large Other use cases}}
-        \vspace{0.5em}
-        \par
-        \begingroup
-        \leftskip=2cm
-        \noindent 
-          restax, IUCN, Invasive, ...
-        \par
-        \endgroup
+      	\begin{columns}[T]
+					\begin{column}{2cm}
+          \end{column}
+          \begin{column}{0.96\linewidth}
+            \begin{description}
+              \item[Resolve ambiguous taxa \cite{cuffney_ambiguous_2007} : ] Taxonomic information forms the basis for these methods, for details see the restax package \cite{_edild/restax_????}.
+              \item[IUCN : ] Query the IUCN status for taxa.
+              \item[Invasive species : ] Check is a taxon is listed in the Global Invasive Species Database (GISD).  Integration of the Global Invasive Species Information Network (GISIN) is under development.
+            \end{description}
+             
 
-<<eval = FALSE>>=
-codecodecode
-@
-\vspace{2em}
+          \end{column}
+        \end{columns}
       \end{block}
       
       \begin{block}{Under the hood}
