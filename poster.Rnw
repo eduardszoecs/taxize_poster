@@ -71,7 +71,7 @@
 %%% Footline
 \setbeamertemplate{footline}{
   \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
-    Eduard Szöcs, Mail: \url{szoecs@uni-landau.de}
+    \textbf{Eduard Szöcs, Mail : szoecs@uni-landau.de}
     \vskip1ex
   \end{beamercolorbox}}
 
@@ -98,7 +98,7 @@
 <<echo=FALSE, message=FALSE>>=
 require(taxize)
 options(width = 50)
-opts_chunk$set(fig.align='center',fig.show='hold',size='footnotesize', cache=TRUE, background='#eeeeee')
+opts_chunk$set(fig.align='center',fig.show='hold',size='footnotesize', cache=TRUE, background='#f3f3f3')
 @
 
   \begin{frame}[fragile]
@@ -207,8 +207,8 @@ downstream('Baetis', db = 'col', downto = 'Species')[[1]][1:7, 2:3]
         \par
         \endgroup
 <<message=FALSE>>=
-species <- c("Juncus bufonius", "Juncus articulatus",
-    "Aira praecox", "Rumex acetosa", "Baetis rhodani")
+species <- c('Juncus bufonius', 'Juncus articulatus',
+    'Aira praecox', 'Rumex acetosa', 'Baetis rhodani')
 hier <- classification(species, db = 'ncbi')
 @
 
@@ -240,7 +240,7 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
 \vspace{2em}
 
 
-\textcolor{i6bluedark}{\textbf{\large Other use cases}}
+\textcolor{i6bluedark}{\textbf{\large Other functionality}}
       	\begin{columns}[T]
 					\begin{column}{2cm}
           \end{column}
