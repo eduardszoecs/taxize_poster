@@ -248,7 +248,7 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
             \begin{description}
               \item[Resolve ambiguous taxa \cite{cuffney_ambiguous_2007} : ] Taxonomic information forms the basis for these methods, for details see the restax package \cite{_edild/restax_????}.
               \item[IUCN : ] Query the IUCN status for taxa.
-              \item[Invasive species : ] Check is a taxon is listed in the Global Invasive Species Database (GISD).  Integration of the Global Invasive Species Information Network (GISIN) is under development.
+              \item[Invasive species : ] Check if a taxon is listed in the Global Invasive Species Database (GISD).  Integration of the Global Invasive Species Information Network (GISIN) is under development.
             \end{description}
              
 

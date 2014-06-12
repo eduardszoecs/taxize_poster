@@ -17,4 +17,3 @@ require(knitr)
 knit('poster.Rnw', output = 'repro.tex')
 texi2pdf('repro.tex')
 ```
-
