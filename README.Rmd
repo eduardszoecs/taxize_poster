@@ -12,8 +12,7 @@ Integration of R is done via [knitr](https://github.com/yihui/knitr).
 
 To reproduce the poster compile `poster.Rnw`:
 
-
-```r
+```{r, eval=FALSE}
 require(knitr)
 knit('poster.Rnw', output = 'repro.tex')
 texi2pdf('repro.tex')
