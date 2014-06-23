@@ -242,9 +242,9 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
 
 \textcolor{i6bluedark}{\textbf{\large Other functionality}}
       	\begin{columns}[T]
-					\begin{column}{2cm}
+					\begin{column}{1cm}
           \end{column}
-          \begin{column}{0.96\linewidth}
+          \begin{column}{0.95\linewidth}
             \begin{description}
               \item[Resolve ambiguous taxa \cite{cuffney_ambiguous_2007} : ] Taxonomic information forms the basis for these methods, for details see the restax package \cite{_edild/restax_????}.
               \item[IUCN : ] Query the IUCN status for taxa.
@@ -259,17 +259,22 @@ tax_agg(dune, rank = 'family', db = 'ncbi')
       \begin{block}{Under the hood}
       taxize grabs data from the internet, formats and returns it to the user.
       This would not have been possible without the work of others:
-      \begin{description}
-        \item[Calling Servers] \hfill \\
-          \texttt{httr} and \texttt{RCurl}
-        \item[Parsing] \hfill \\
-          \texttt{XML} and \texttt{RJSONIO}
-        \item[Data manipulation] \hfill \\
-          \texttt{stringr}, \texttt{plyr}, \texttt{reshape2} and \texttt{vegan}
-      \end{description}
+        \begin{columns}[T]
+					\begin{column}{1cm}
+          \end{column}
+          \begin{column}{0.95\linewidth}
+            \begin{description}
+              \item[Calling Servers] \hfill \\
+                \texttt{httr} and \texttt{RCurl}
+              \item[Parsing] \hfill \\
+                \texttt{XML} and \texttt{RJSONIO}
+              \item[Data manipulation] \hfill \\
+                \texttt{stringr}, \texttt{plyr}, \texttt{reshape2} and \texttt{vegan}
+            \end{description}
+          \end{column}
+          \end{columns}
       \vspace{0.5cm}
       And, of course, base-R ;)
-      
       \end{block}
       
 			\begin{block}{Get involved!}
